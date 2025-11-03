@@ -12,7 +12,7 @@ The system is a single-page web application that uses a simple, serverless-style
 
 Here is a brief demonstration of the application, showing the user input and the side-by-side output of the agent's reasoning and the final email draft.
 
-![Demo Video](https://github.com/user-attachments/assets/5063b9ac-717b-409a-bd47-e9b59ed5e974)
+![Demo Video](Recording%202025-11-03%20202152%20(1).gif)
 
 
 ## 2. Data Design
