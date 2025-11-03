@@ -1,73 +1,66 @@
-## Submitted by,
-Ravi Kumar<br>
-BS Economics<br>
-IIT Kanpur
+# 🎓 AI University Email Agent
 
+**Submitted by: Ravi Kumar, BS Economics, IIT Kanpur**
 
-# System Design: AI University Email Agent
+A prototype AI agent built for a university assignment (SDE Role). This tool helps students automate the task of drafting professional emails by leveraging a Large Language Model (LLM) to reason, plan, and execute the draft.
 
-## 1. System Architecture
+---
 
-The system is a single-page web application that uses a simple, serverless-style "agent-on-demand" architecture.
-
-* **Frontend (UI):** A web interface built and served by **Streamlit**. It provides form-based inputs for the user and displays the structured output in a 1/3 + 2/3 column layout.
-* **Backend:** The **Streamlit server** itself acts as the backend. It runs the Python script, receives form data, and handles all application logic.
-* **AI Agent:** The "agent" is not a persistent service but is instantiated on-demand via a call to the **Google Gemini API** (using the `gemini-2.5-pro` model). The agent's "reason, plan, execute" logic is enforced by a highly-structured prompt.
-
-## Demo
+##  Demo
 
 Here is a brief demonstration of the application, showing the user input and the side-by-side output of the agent's reasoning and the final email draft.
 
-![Demo Video](Recording%202025-11-03%20202152%20(1).gif)
+![Demo Video](https://github.com/user-attachments/assets/5063b9ac-717b-409a-bd47-e9b59ed5e974)
 
+---
 
-## 2. Data Design
+##  core Features
 
-The application is stateless (it does not use a database). Data flows as follows:
+* **Task Automation:** Automates the manual task of drafting professional university emails.
+* **AI-Powered Logic:** The agent follows a "Reason, Plan, Execute, Guide" model to generate drafts.
+* **Intuitive UI:** Built with Streamlit for a clean, form-based user interface.
+* **Personalization:** Allows users to input their personal details (name, course, etc.) and desired tone for a ready-to-send email.
+* **Separated Outputs:** The final draft is split into a **Guide**, **Subject**, and **Body** for clarity and ease of use.
 
-* **Input Data:** The system takes seven unstructured text strings from the Streamlit form:
-    1.  `recipient`
-    2.  `goal`
-    3.  `points`
-    4.  `tone`
-    5.  `sender_name`
-    6.  `sender_id`
-    7.  `sender_course`
-* **Process Data:** The core of the system is the **master prompt** in the `get_prompt` function. This prompt formats the user's input and instructs the LLM to return a structured response separated by `---` markers.
-* **Output Data:** The LLM returns a single string. The `get_agent_response` function parses this string by splitting it `---` to extract five distinct pieces of data:
-    1.  `Reasoning` (for the monitoring UI)
-    2.  `Plan` (for the monitoring UI)
-    3.  `Subject` (for the output)
-    4.  `Body` (for the output)
-    5.  `Guide` (for the output)
+## ✨ Bonus Features Implemented
 
-## 3. Component Breakdown
+* **External Integration:** Integrates with the Google Gemini API (`gemini-2.5-pro`) to act as the agent's "brain."
+* **UI for Monitoring:** The app provides a dedicated side-panel to monitor the agent's internal **Reasoning** and **Plan**, fulfilling the bonus requirement.
 
-The entire prototype is contained in `app.py`:
+## 🚀 How to Run Locally
 
-* **`get_prompt(...)`:** A function that takes all user inputs and constructs the large, detailed master prompt string. This prompt is the core of the "agent's" logic.
-* **`get_agent_response(...)`:** This function handles the "external integration."
-    1.  It calls `get_prompt` to get the formatted request.
-    2.  It sends the request to the Gemini API.
-    3.  It receives the raw text response.
-    4.  It parses the text into the five required parts (Reasoning, Plan, Subject, Body, Guide) and returns them.
-* **Streamlit UI (Main Body):**
-    1.  Renders the title and input form (`st.form`).
-    2.  Uses `st.columns` to organize the input fields.
-    3.  On `st.form_submit_button` click, it runs the spinner and calls `get_agent_response`.
-    4.  **Output Rendering:**
-        * It creates a 1/3 + 2/3 column layout using `st.columns([1, 2])`.
-        * **Left Column (1/3):** Displays the `reasoning` and `plan` (fulfilling the "UI for monitoring" bonus).
-        * **Right Column (2/3):** Displays the `guide` (in `st.info`), `subject` (in `st.code`), and `body` (in `st.container(border=True)` to ensure text wrapping).
-    5.  It uses the `pyperclip` library for the "Copy to Clipboard" button.
+This project was built in Python using Streamlit.
 
-## 4. Chosen Technologies & Justification
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git)
+    cd YOUR_REPO_NAME
+    ```
 
-* **Python:** Chosen as the primary language due to its dominance in the AI/LLM space and its rich ecosystem of libraries.
-* **Streamlit:** Chosen for **extreme rapid prototyping speed**. It allowed us to build and deploy a functional, data-driven web UI and backend in a single file, which is essential for a short-deadline project. It perfectly met the "user interface" requirement.
-* **Google Gemini API (`gemini-2.5-pro`):** Chosen as the external integration to fulfill the "reason, plan, and execute" requirement. By instructing the LLM to output its own reasoning and plan, we satisfy the core and bonus requirements without building a complex, from-scratch agent framework.
-* **`pyperclip`:** A small utility library chosen to improve the user experience (UX) by adding a functional "Copy to Clipboard" button.
+2.  **Create and activate a virtual environment:**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: .\venv\Scripts\activate
+    ```
 
-## 5. Originality & Social Impact
+3.  **Install dependencies:**
+    ```bash
+    pip install streamlit google-generativeai pyperclip
+    ```
 
-The system automates a common, high-friction task for university students: professional communication. Many students struggle with "email anxiety" or finding the correct tone when writing to professors. This agent acts as a co-pilot, not only drafting the email (execution) but also showing its thought process (reasoning & plan). This transparency can help educate the user on *how* to write such emails, providing a positive social impact by improving communication skills and reducing anxiety.
+4.  **Set your API Key:**
+    You must set your Google AI API key as an environment variable.
+    * **On Mac/Linux:** `export GOOGLE_API_KEY='YOUR_API_KEY_HERE'`
+    * **On Windows:** `set GOOGLE_API_KEY=YOUR_API_KEY_HERE`
+
+5.  **Run the app:**
+    ```bash
+    streamlit run app.py
+    ```
+
+## 🛠️ Technologies Used
+
+* **Python**
+* **Streamlit** (for the UI and web server)
+* **Google Gemini API** (for the AI agent logic)
+* **Pyperclip** (for the "Copy to Clipboard" feature)
