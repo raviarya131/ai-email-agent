@@ -10,7 +10,7 @@ A prototype AI agent built for a university assignment (SDE Role). This tool hel
 
 Here is a brief demonstration of the application, showing the user input and the side-by-side output of the agent's reasoning and the final email draft.
 
-![Demo Video](Recording 2025-11-03 202152 (1).gif)
+![Demo of the AI Email Agent](demo.gif)
 
 ---
 
