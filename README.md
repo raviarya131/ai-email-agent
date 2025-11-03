@@ -8,6 +8,11 @@ The system is a single-page web application that uses a simple, serverless-style
 * **Backend:** The **Streamlit server** itself acts as the backend. It runs the Python script, receives form data, and handles all application logic.
 * **AI Agent:** The "agent" is not a persistent service but is instantiated on-demand via a call to the **Google Gemini API** (using the `gemini-2.5-pro` model). The agent's "reason, plan, execute" logic is enforced by a highly-structured prompt.
 
+## Demo
+
+Here is a brief demonstration of the application, showing the user input and the side-by-side output of the agent's reasoning and the final email draft.
+
+**[https://github.com/user-attachments/assets/5063b9ac-717b-409a-bd47-e9b59ed5e974]**
 
 
 ## 2. Data Design
