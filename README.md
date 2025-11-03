@@ -33,8 +33,8 @@ This project was built in Python using Streamlit.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git)
-    cd YOUR_REPO_NAME
+    git clone [https://github.com/raviarya131/ai-email-agent.git](https://github.com/raviarya131/ai-email-agent.git)
+    cd ai-email-agent
     ```
 
 2.  **Create and activate a virtual environment:**
