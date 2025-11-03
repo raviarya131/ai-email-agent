@@ -1,6 +1,6 @@
 ## Submitted by,
-Ravi Kumar
-BS Economics
+Ravi Kumar<br>
+BS Economics<br>
 IIT Kanpur
 
 
