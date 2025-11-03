@@ -1,3 +1,9 @@
+## Submitted by,
+Ravi Kumar
+BS Economics
+IIT Kanpur
+
+
 # System Design: AI University Email Agent
 
 ## 1. System Architecture
